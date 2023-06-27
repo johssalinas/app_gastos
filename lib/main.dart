@@ -1,3 +1,5 @@
+import 'package:app_gastos/lineChart.dart';
+import 'package:app_gastos/price_ponits.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -15,15 +17,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -153,8 +153,12 @@ class _MyHomePageState extends State<MyHomePage> {
       ]));
     }
 
-    /* Widget _graph() {}
-    ;*/
+    Widget graph() {
+      return Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: LineChartWidget(pricePoints),
+      );
+    }
 
     Widget item(IconData icon, String name, int percent, double value) {
       return ListTile(
@@ -202,7 +206,7 @@ class _MyHomePageState extends State<MyHomePage> {
         children: <Widget>[
           selector(),
           expenses(),
-          //_graph(),
+          graph(),
           Container(
             color: Colors.blueAccent.withOpacity(0.15),
             height: 24.0,
